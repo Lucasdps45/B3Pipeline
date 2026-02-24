@@ -11,4 +11,11 @@ engine = create_engine(db_url)
 
 df = transform_data(get_data())
 
-df.to_sql('acoes', engine, if_exists='append', index=False)
+df.to_sql(
+    'acoes',
+    engine, 
+    if_exists='append',
+    index=False,
+    chunksize=1000,
+    method='multi'
+)

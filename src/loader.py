@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 
 load_dotenv()
 
-db_url = os.environ.get('DATABASE_URL')
+db_url = os.environ.get('B3_DATABASE_URL')
 engine = create_engine(db_url)
 
 

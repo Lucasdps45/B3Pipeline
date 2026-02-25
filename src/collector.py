@@ -7,7 +7,13 @@ load_dotenv()
 
 api_key = os.environ.get('BRAPI_TOKEN')
 
-TICKERS = ["WEGE3", "PETR4", "VALE3"]
+TICKERS = [
+    "PETR4", "VALE3", "ITUB4", "BBDC4", "BBAS3", 
+    "WEGE3", "EMBR3", "TOTS3", "VIVT3",            
+    "MGLU3", "RENT3", "LREN3",                      
+    "SUZB3", "JBSS3", "ABEV3",                      
+    "RDOR3", "HAPV3"                                  
+]
 def get_data(tickers = TICKERS):
     symbols = ','.join(tickers)
     url = f'https://brapi.dev/api/quote/{symbols}?token={api_key}'

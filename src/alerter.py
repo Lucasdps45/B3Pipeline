@@ -30,7 +30,7 @@ def send_alert(alerts):
 
 
 def verify_variation(df):
-    alerts = df[df['variacao_pct'].abs() > 0.1]
+    alerts = df[df['variacao_pct'].abs() > 5]
     if not alerts.empty:
         send_alert(alerts)
 

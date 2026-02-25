@@ -23,7 +23,7 @@ jobs:
         - name: Execute Pileline
           env:
             BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
-            B3_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            B3_DATABASE_URL: ${{ secrets.B3_DATABASE_URL }}
             EMAIL: ${{ secrets.EMAIL }}
             PASS: ${{ secrets.PASS }}
             EMAIL_TO: ${{ secrets.EMAIL_TO }}

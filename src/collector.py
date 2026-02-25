@@ -5,7 +5,7 @@ import pandas as pd
 
 load_dotenv()
 
-api_key = os.environ.get('API_TOKEN')
+api_key = os.environ.get('BRAPI_TOKEN')
 
 TICKERS = ["WEGE3", "PETR4", "VALE3"]
 def get_data(tickers = TICKERS):

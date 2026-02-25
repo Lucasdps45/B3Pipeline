@@ -1,0 +1,29 @@
+name: B3 Pipeline
+
+on:
+  schedule:
+    - cron: '0 21 * * 1-5'
+jobs:
+    update-data:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Config Python
+          uses: actions/setup-python@v4
+          with:
+            python-version: '3.12'
+
+        - name: Install dependencies
+          run: |
+              pip install -r requirements.txt
+              
+        - name: Execute Pileline
+          env:
+            BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            EMAIL: ${{ secrets.EMAIL }}
+            PASS: ${{ secrets.PASS }}
+            EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          run: python main.py

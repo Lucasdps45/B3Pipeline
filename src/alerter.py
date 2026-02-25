@@ -2,8 +2,7 @@ import os
 from dotenv import load_dotenv
 import smtplib
 import email.message
-from collector import get_data
-from transformer import transform_data
+
 
 load_dotenv()
 
@@ -26,12 +25,7 @@ def send_alert(alerts):
 
 
 def verify_variation(df):
-    alerts = df[df['variacao_pct'].abs() > 0.1]
+    alerts = df[df['variacao_pct'].abs() > 5]
     if not alerts.empty:
         send_alert(alerts)
-
-if __name__== '__main__':
-
-    df = transform_data(get_data())
-    verify_variation(df)      
 

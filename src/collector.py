@@ -18,6 +18,3 @@ def get_data(tickers = TICKERS):
     'regularMarketVolume']]
     df.columns = ['ticker','preco', 'variacao_pct', 'volume']
     return df
-
-if __name__ == '__main__':
-    print(get_data())

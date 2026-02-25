@@ -3,6 +3,7 @@ name: B3 Pipeline
 on:
   schedule:
     - cron: '0 21 * * 1-5'
+  workflow_dispatch:
 jobs:
     update-data:
       runs-on: ubuntu-latest

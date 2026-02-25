@@ -11,8 +11,13 @@ EMAIL_PASS = os.environ.get('PASS')
 EMAIL_TO = os.environ.get('EMAIL_TO')
 
 def send_alert(alerts):
-    email_body = f"Alerta B3!\n\nAções com variação acima de 5%:\n\n{alerts.to_string(index=False)}"
+    lines = []
+    for _, row in alerts.iterrows():
+        emoji = "🔴" if row['variacao_pct'] < 0 else "🟢"
+        lines.append(f"{emoji} {row['ticker']}: R$ {row['preco']:.2f} ({row['variacao_pct']:+.2f}%)")
 
+    email_body = "Alerta B3!\n\nAções com variação acima de 5%:\n\n" + "\n".join(lines)
+    
     msg = email.message.EmailMessage()
     msg['Subject'] = 'Variacao'
     msg['From'] = EMAIL_USER
@@ -25,7 +30,7 @@ def send_alert(alerts):
 
 
 def verify_variation(df):
-    alerts = df[df['variacao_pct'].abs() > 5]
+    alerts = df[df['variacao_pct'].abs() > 0.1]
     if not alerts.empty:
         send_alert(alerts)
 

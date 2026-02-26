@@ -14,7 +14,7 @@ TICKERS = [
     "SUZB3", "JBSS3", "ABEV3",                      
     "RDOR3", "HAPV3"                                  
 ]
-def get_data(tickers = TICKERS):
+def get_brapi_b3_data(tickers = TICKERS):
     symbols = ','.join(tickers)
     url = f'https://brapi.dev/api/quote/{symbols}?token={api_key}'
     request_data = requests.get(url)

@@ -1,9 +1,9 @@
-from src.collector import get_data
+from src.collector import get_brapi_b3_data
 from src.transformer import transform_data
 from src.loader import load_to_db
 from src.alerter import verify_variation
 
-df = get_data()
+df = get_brapi_b3_data()
 
 transformed_df = transform_data(df)
 

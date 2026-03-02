@@ -14,13 +14,16 @@ TICKERS = [
     "SUZB3", "JBSS3", "ABEV3",                      
     "RDOR3", "HAPV3"                                  
 ]
-def get_brapi_b3_data(tickers = TICKERS):
-    symbols = ','.join(tickers)
-    url = f'https://brapi.dev/api/quote/{symbols}?token={api_key}'
-    request_data = requests.get(url)
-    data = request_data.json()['results']
 
-    df = pd.DataFrame(data)[['symbol', 'regularMarketPrice', 'regularMarketChangePercent',
-    'regularMarketVolume']]
-    df.columns = ['ticker','preco', 'variacao_pct', 'volume']
-    return df
+def get_brapi_b3_data(tickers = TICKERS):
+    dfs = []
+    for ticker in tickers:
+        url = f'https://brapi.dev/api/quote/{ticker}?token={api_key}'
+        response = requests.get(url)
+        data = response.json()['results']
+
+        df = pd.DataFrame(data)[['symbol', 'regularMarketPrice', 'regularMarketChangePercent',
+        'regularMarketVolume']]
+        df.columns = ['ticker','preco', 'variacao_pct', 'volume']
+        dfs.append(df)
+    return pd.concat(dfs)

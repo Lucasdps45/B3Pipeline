@@ -2,7 +2,9 @@ name: B3 Pipeline
 
 on:
   schedule:
-    - cron: '0 21 * * 1-5'
+      - cron: '0 13 * * 1-5'
+      - cron: '0 17 * * 1-5'
+      - cron: '0 21 * * 1-5'
   workflow_dispatch:
 jobs:
     update-data:

@@ -96,7 +96,8 @@ fig2 = px.line(
     x='data_coleta',
     y='preco',
     title=f'Histórico de Preços - {ticker_selecionado}',
-    labels={'data_coleta': 'Data', 'preco': 'Preço (R$)'}
+    labels={'data_coleta': 'Data', 'preco': 'Preço (R$)'},
+    markers=True
 )
 
 st.plotly_chart(fig2, use_container_width=True)
